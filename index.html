@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#091b20">
+  <meta name="description" content="TANO 塔諾廚房｜熟成牛排、炭火料理，以及一段橫跨歐洲與美洲的料理旅程。">
+  <title>TANO 塔諾廚房</title>
+  <style>
+    :root {
+      --ink: #eee4d4;
+      --ink-soft: #061419;
+      --paper: #091b20;
+      --paper-deep: #10272c;
+      --paper-muted: #b9b2a6;
+      --dark-muted: #aaa497;
+      --line: rgba(201,165,106,.28);
+      --wine: #c9a56a;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--paper); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Avenir Next", Avenir, "Helvetica Neue", "Noto Sans TC", "PingFang TC", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    .skip-link { position: fixed; left: 16px; top: -60px; z-index: 200; padding: 10px 14px; background: var(--ink); color: var(--paper); }
+    .skip-link:focus { top: 16px; }
+    .shell { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+    .site-header { position: fixed; inset: 0 0 auto; z-index: 100; height: 72px; background: rgba(9,27,32,.93); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+    .site-header.scrolled { background: rgba(9,27,32,.98); }
+    .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { text-decoration: none; font-size: 1.35rem; letter-spacing: .42em; font-weight: 400; color: var(--wine); }
+    .nav-center { display: flex; align-items: center; gap: 28px; }
+    .nav-center a { text-decoration: none; font-size: .8rem; letter-spacing: .1em; color: var(--paper-muted); }
+    .nav-center a:hover, .nav-center a:focus-visible { color: var(--wine); }
+    .language { display: flex; border: 1px solid var(--line); padding: 2px; }
+    .language button { border: 0; background: transparent; color: var(--paper-muted); min-width: 40px; min-height: 34px; cursor: pointer; font-size: .75rem; letter-spacing: .05em; }
+    .language button.active { color: var(--paper); background: var(--wine); }
+    .hero { min-height: 92svh; padding-top: 72px; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr); overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 90px max(42px, calc((100vw - var(--max)) / 2)); }
+    .eyebrow { margin: 0 0 26px; color: var(--wine); font-family: "Iowan Old Style", Baskerville, serif; font-size: .84rem; font-style: italic; letter-spacing: .2em; font-weight: 400; }
+    h1, h2 { font-family: "Avenir Next", Avenir, "Helvetica Neue", "Noto Sans TC", "PingFang TC", sans-serif; font-weight: 300; line-height: 1.28; margin: 0; }
+    h1 { max-width: 720px; font-size: clamp(2.5rem, 4.7vw, 5.25rem); letter-spacing: .055em; }
+    .hero-lead { max-width: 610px; margin: 30px 0 0; color: var(--paper-muted); font-size: clamp(1rem, 1.35vw, 1.18rem); }
+    .hero-actions { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 38px; }
+    .button { display: inline-flex; align-items: center; min-height: 42px; padding: 0 0 4px; border: 0; border-bottom: 1px solid currentColor; color: var(--ink); background: transparent; text-decoration: none; font-size: .86rem; letter-spacing: .08em; transition: color .2s ease; }
+    .button.primary { color: var(--wine); }
+    .button:hover, .button:focus-visible { color: var(--wine); }
+    .hero-media { position: relative; height: min(58vh, 560px); align-self: center; overflow: hidden; }
+    .hero-media img { height: 100%; object-fit: cover; object-position: 50% 35%; filter: saturate(.82) contrast(1.04); }
+    .hero-media::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(201,165,106,.35); box-shadow: inset 18px 0 36px rgba(0,0,0,.26); pointer-events: none; }
+    section { scroll-margin-top: 72px; }
+    .story { background: var(--paper); color: var(--ink); padding: 120px 0; }
+    .story-grid { display: grid; grid-template-columns: minmax(360px, .92fr) minmax(0, 1.08fr); gap: clamp(48px, 8vw, 120px); align-items: center; }
+    .story-copy { max-width: 650px; }
+    h2 { color: var(--wine); font-size: clamp(2.15rem, 4.1vw, 4.45rem); letter-spacing: .07em; }
+    .story-text { padding-top: 48px; }
+    .story-text p { margin: 0 0 24px; font-size: clamp(1.05rem, 1.4vw, 1.22rem); color: var(--paper-muted); }
+    .story-visual { width: 100%; margin: 0; }
+    .story-visual video, .video-frame { display: block; width: 100%; height: min(64vw, 650px); object-fit: cover; }
+    .video-frame { position: relative; background: var(--ink-soft); overflow: hidden; }
+    .video-play { position: absolute; inset: auto 18px 18px; width: calc(100% - 36px); min-height: 48px; border: 1px solid rgba(255,255,255,.78); background: rgba(23,21,19,.78); color: white; cursor: pointer; letter-spacing: .08em; }
+    .video-play[hidden] { display: none; }
+    .menu { padding: 110px 0; background: var(--paper-deep); color: var(--ink); border-block: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 52px; }
+    .section-head p { max-width: 460px; margin: 0; color: var(--paper-muted); }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .menu-page { position: relative; overflow: hidden; padding: 0; border: 1px solid rgba(201,165,106,.48); background: #efe7d8; color: #211e1a; cursor: zoom-in; aspect-ratio: 9 / 16; }
+    .menu-page img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s cubic-bezier(.2,.7,.2,1), filter .3s; }
+    .menu-page:hover img, .menu-page:focus-visible img { transform: scale(1.018); filter: brightness(1.04); }
+    .gallery { padding: 110px 0; background: var(--ink-soft); }
+    .gallery .section-head { color: var(--ink); }
+    .gallery .section-head p { color: var(--dark-muted); }
+    .gallery-grid { display: grid; grid-template-columns: 1.12fr .88fr; grid-auto-rows: 290px; gap: 18px; }
+    .gallery-item { position: relative; overflow: hidden; border: 1px solid rgba(201,165,106,.18); padding: 0; background: #061419; cursor: zoom-in; }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img { height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s; }
+    .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.035); filter: brightness(1.08); }
+    .visit { display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; overflow: hidden; background: var(--paper); color: var(--ink); border-top: 1px solid var(--line); text-align: left; }
+    .visit > img { position: static; height: 360px; min-height: 360px; object-fit: cover; object-position: center 52%; filter: saturate(.78); }
+    .visit-content { align-self: center; width: min(560px, calc(100% - 80px)); margin-inline: auto; }
+    .visit-content p { color: var(--paper-muted); margin: 24px 0 34px; }
+    .social-links { display: flex; justify-content: flex-start; flex-wrap: wrap; gap: 22px; }
+    .social-icon { width: 40px; height: 40px; display: grid; place-items: center; color: var(--wine); text-decoration: none; transition: color .2s ease, transform .2s ease; }
+    .social-icon svg { width: 26px; height: 26px; }
+    .social-icon:hover, .social-icon:focus-visible { color: var(--ink); transform: translateY(-2px); }
+    footer { padding: 30px 0 100px; border-top: 1px solid var(--line); background: var(--paper); color: var(--paper-muted); font-size: .78rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; }
+    .mobile-bar { display: none; }
+    .lightbox { border: 0; padding: 0; width: min(92vw, 980px); max-height: 92vh; background: transparent; color: white; }
+    .lightbox::backdrop { background: rgba(0,0,0,.9); }
+    .lightbox img { max-height: 85vh; object-fit: contain; }
+    .lightbox.menu-mode { width: min(96vw, 820px); overflow: auto; background: #111; }
+    .lightbox.menu-mode img { max-height: none; height: auto; }
+    .lightbox-close { position: fixed; right: 18px; top: 18px; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: white; background: rgba(0,0,0,.35); cursor: pointer; font-size: 1.5rem; }
+    .motion-ready [data-reveal] { opacity: 0; transform: translate3d(0, 38px, 0); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.72,.2,1); transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform; }
+    .motion-ready [data-reveal="left"] { transform: translate3d(-52px, 0, 0); }
+    .motion-ready [data-reveal="right"] { transform: translate3d(52px, 0, 0); }
+    .motion-ready [data-reveal].is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+    @media (max-width: 840px) {
+      .shell { width: min(calc(100% - 32px), var(--max)); }
+      .site-header { height: 64px; }
+      .nav-center { display: none; }
+      .hero { min-height: auto; padding-top: 64px; grid-template-columns: 1fr; }
+      .hero-copy { padding: 64px 20px 52px; }
+      h1 { font-size: clamp(2.65rem, 12vw, 4.4rem); max-width: 98%; }
+      .hero-media { height: min(82vw, 390px); margin: 0 20px 54px; }
+      .hero-media::after { box-shadow: inset 0 16px 28px rgba(0,0,0,.24); }
+      .story, .menu, .gallery { padding: 78px 0; }
+      .story-grid { grid-template-columns: 1fr; gap: 38px; }
+      .story-copy { order: 1; }
+      .story-visual { order: 2; }
+      .story-text { padding-top: 22px; }
+      .story-visual video, .video-frame { height: min(132vw, 580px); }
+      .section-head { display: block; margin-bottom: 34px; }
+      .section-head p { margin-top: 18px; }
+      .menu-grid { display: flex; overflow-x: auto; gap: 12px; margin-right: -16px; padding-right: 16px; padding-bottom: 12px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
+      .menu-page { flex: 0 0 min(82vw, 390px); scroll-snap-align: start; }
+      .gallery-grid { display: block; }
+      .gallery-item { display: block; width: 100%; height: 66vw; max-height: 430px; margin-bottom: 16px; }
+      .gallery-item:nth-child(odd) { width: 88%; }
+      .gallery-item:nth-child(even) { width: 88%; margin-left: auto; }
+      .visit { grid-template-columns: 1fr; min-height: auto; }
+      .visit > img { min-height: 0; height: 72vw; max-height: 520px; object-position: center 58%; }
+      .visit-content { width: calc(100% - 40px); padding: 66px 0 74px; }
+      .footer-row { display: block; }
+      .mobile-bar { position: fixed; display: grid; grid-template-columns: repeat(3, 1fr); z-index: 90; left: 10px; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); border: 1px solid var(--line); background: rgba(9,27,32,.97); box-shadow: 0 8px 28px rgba(0,0,0,.34); backdrop-filter: blur(12px); }
+      .mobile-bar a { min-height: 52px; display: grid; place-items: center; text-decoration: none; font-size: .76rem; letter-spacing: .06em; border-right: 1px solid var(--line); }
+      .mobile-bar a:last-child { border: 0; }
+      .mobile-bar a[aria-disabled="true"] { opacity: .5; }
+    }
+    @media (max-width: 420px) {
+      .brand { font-size: 1.12rem; }
+      .language button { min-width: 36px; }
+      .menu-grid { gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+      .motion-ready [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="header">
+    <div class="nav shell">
+      <a class="brand" href="#top" aria-label="TANO home">TANO</a>
+      <nav class="nav-center" aria-label="Primary navigation">
+        <a href="#story" data-i18n="navStory">故事</a>
+        <a href="#menu" data-i18n="navMenu">菜單</a>
+        <a href="#gallery" data-i18n="navGallery">影像</a>
+        <a href="#visit" data-i18n="navVisit">來訪</a>
+      </nav>
+      <div class="language" role="group" aria-label="Language">
+        <button type="button" data-lang="zh" class="active" aria-pressed="true">中</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="heroEyebrow" data-reveal>ARGENTINE · ITALIAN CUCINA</p>
+        <h1 data-i18n="heroTitle" data-reveal>一位義大利裔阿根廷廚師，在台中做他熟悉的炭火料理。</h1>
+        <p class="hero-lead" data-i18n="heroLead" data-reveal>炭火讓肉品留下直接而深刻的香氣，一杯阿根廷 Malbec，讓餐桌多了幾分故鄉的性格。</p>
+        <div class="hero-actions" data-reveal>
+          <a class="button primary" href="#menu" data-i18n="viewMenu">查看菜單</a>
+          <a class="button line-link" href="https://lin.ee/tFZ01vNI" target="_blank" rel="noopener noreferrer" data-i18n="reserve">LINE訂位</a>
+        </div>
+      </div>
+      <div class="hero-media" data-reveal="right">
+        <img src="assets/chef.webp" width="1000" height="1400" alt="TANO chef preparing a cut of meat" fetchpriority="high">
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-grid shell">
+        <div class="story-visual" data-reveal="left">
+          <div class="video-frame">
+            <video id="storyVideo" src="assets/story-loop.mp4" poster="assets/story-poster.webp" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="TANO chef working in the kitchen"></video>
+            <button class="video-play" id="videoPlay" type="button" data-i18n="playVideo" hidden>播放影片</button>
+          </div>
+        </div>
+        <div class="story-copy">
+          <div class="story-title" data-reveal="right">
+            <h2 data-i18n="storyTitle">從 Arta Terme、雪梨，到台中大墩路。</h2>
+          </div>
+          <div class="story-text">
+            <p data-i18n="storyP1" data-reveal="right">塔諾廚房由擁有十多年餐廳經驗的義大利裔阿根廷廚師主理。他曾在義大利 Arta Terme 的三星級飯店，以及澳洲雪梨獲選亞洲前 50 大的牛排餐廳擔任廚師。</p>
+            <p data-i18n="storyP2" data-reveal="right">如今，他將歐洲料理的細緻、阿根廷對炭火與肉品的熱情帶到台中，以熟成牛排與炭火料理，呈現屬於塔諾的餐桌風景。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu" id="menu">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <div>
+            <h2 data-i18n="menuTitle">菜單</h2>
+          </div>
+          <p data-i18n="menuIntro">以熟成牛排與炭火料理為核心。點擊菜單圖片，即可放大閱讀。</p>
+        </div>
+        <div class="menu-grid" id="menuGrid" aria-label="Menu pages">
+          <button class="menu-page" type="button" data-full="assets/menu-01.webp" data-menu="true" data-reveal="up" aria-label="菜單第 1 頁"><img src="assets/menu-01.webp" alt="菜單第 1 頁" loading="lazy" decoding="async"></button>
+          <button class="menu-page" type="button" data-full="assets/menu-02.webp" data-menu="true" data-reveal="up" aria-label="菜單第 2 頁"><img src="assets/menu-02.webp" alt="菜單第 2 頁" loading="lazy" decoding="async"></button>
+          <button class="menu-page" type="button" data-full="assets/menu-03.webp" data-menu="true" data-reveal="up" aria-label="菜單第 3 頁"><img src="assets/menu-03.webp" alt="菜單第 3 頁" loading="lazy" decoding="async"></button>
+          <button class="menu-page" type="button" data-full="assets/menu-04.webp" data-menu="true" data-reveal="up" aria-label="菜單第 4 頁"><img src="assets/menu-04.webp" alt="菜單第 4 頁" loading="lazy" decoding="async"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <div>
+            <h2 data-i18n="galleryTitle">炭火與餐桌</h2>
+          </div>
+          <p data-i18n="galleryIntro">炭火的溫度、料理的節奏，以及端上桌前的每一個細節。</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item" type="button" data-full="assets/steak.webp" data-reveal="left"><img src="assets/steak.webp" alt="Sliced grilled steak" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/chicken.webp" data-reveal="right"><img src="assets/chicken.webp" alt="Fire-roasted chicken" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/pasta.webp" data-reveal="right"><img src="assets/pasta.webp" alt="Freshly plated dish" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/wine.webp" data-reveal="left"><img src="assets/wine.webp" alt="Wine selected for the table" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/fire.webp" data-reveal="right"><img src="assets/fire.webp" alt="Steak over an open flame" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <img src="assets/grill.webp" width="1000" height="1400" alt="Ingredients cooking over charcoal" loading="lazy" data-reveal="left">
+      <div class="visit-content" data-reveal="right">
+        <h2 data-i18n="visitTitle">TANO 塔諾廚房</h2>
+        <p data-i18n="visitText">台中市南屯區大墩路918號<br>查看位置、加入 LINE，或追蹤我們的 Instagram。</p>
+        <div class="social-links">
+          <a class="social-icon map-link" href="https://maps.app.goo.gl/UQbiD3cbwbX9NGS28?g_st=ipc" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" title="Google Maps">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#EA4335" d="M12 1.75a7.15 7.15 0 0 0-7.15 7.15c0 5.37 7.15 13.35 7.15 13.35s7.15-7.98 7.15-13.35A7.15 7.15 0 0 0 12 1.75Z"/><path fill="#FBBC04" d="M6.22 4.71a7.12 7.12 0 0 0-1.37 4.19c0 1.72.73 3.67 1.74 5.54l4.13-4.13-4.5-5.6Z"/><path fill="#34A853" d="M12 22.25s2.73-3.05 4.82-6.55l-4.41-4.41-5.82 3.15C8.64 18.23 12 22.25 12 22.25Z"/><circle fill="#4285F4" cx="12" cy="8.9" r="2.65"/></svg>
+          </a>
+          <a class="social-icon line-link" href="https://lin.ee/tFZ01vNI" target="_blank" rel="noopener noreferrer" aria-label="LINE" title="LINE">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#06C755"/><path fill="white" d="M18.65 11.05c0-3-3-5.45-6.65-5.45s-6.65 2.45-6.65 5.45c0 2.69 2.39 4.94 5.62 5.37.22.05.52.15.59.35.07.18.05.46.02.65l-.1.61c-.03.18-.14.71.62.39.76-.32 4.1-2.41 5.6-4.13.65-.72.95-1.85.95-2.94Z"/><circle cx="9" cy="11" r=".75" fill="#06C755"/><circle cx="12" cy="11" r=".75" fill="#06C755"/><circle cx="15" cy="11" r=".75" fill="#06C755"/></svg>
+          </a>
+          <a class="social-icon ig-link" href="https://www.instagram.com/tano_taichung?igsi=bHg3M3hkODRwemcz" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-row shell">
+      <span>© <span id="year"></span> TANO</span>
+      <span data-i18n="footerLine">台中市南屯區大墩路918號</span>
+    </div>
+  </footer>
+
+  <nav class="mobile-bar" aria-label="Quick actions">
+    <a href="#menu" data-i18n="mobileMenu">菜單</a>
+    <a class="line-link" href="https://lin.ee/tFZ01vNI" target="_blank" rel="noopener noreferrer" data-i18n="mobileReserve">LINE訂位</a>
+    <a href="#top" data-i18n="mobileTop">返回上方</a>
+  </nav>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" type="button" aria-label="Close">×</button>
+    <img src="" alt="">
+  </dialog>
+
+  <script>
+    const copy = {
+      zh: {
+        navStory: "故事", navMenu: "菜單", navGallery: "影像", navVisit: "來訪",
+        heroEyebrow: "ARGENTINE · ITALIAN CUCINA", heroTitle: "一位義大利裔阿根廷廚師，在台中做他熟悉的炭火料理。",
+        heroLead: "炭火讓肉品留下直接而深刻的香氣，一杯阿根廷 Malbec，讓餐桌多了幾分故鄉的性格。",
+        viewMenu: "查看菜單", reserve: "LINE訂位",
+        storyTitle: "從 Arta Terme、雪梨，到台中大墩路。",
+        storyP1: "塔諾廚房由擁有十多年餐廳經驗的義大利裔阿根廷廚師主理。他曾在義大利 Arta Terme 的三星級飯店，以及澳洲雪梨獲選亞洲前 50 大的牛排餐廳擔任廚師。",
+        storyP2: "如今，他將歐洲料理的細緻、阿根廷對炭火與肉品的熱情帶到台中，以熟成牛排與炭火料理，做成他在這座城市最想端出的味道。",
+        menuTitle: "菜單", menuIntro: "以熟成牛排與炭火料理為核心。點擊菜單圖片，即可放大閱讀。",
+        menuPage: "菜單第 {n} 頁",
+        galleryTitle: "炭火與餐桌", galleryIntro: "從炭火上的肉，到端上桌前的最後一道工序。這些是 TANO 每天真正發生的料理現場。",
+        visitTitle: "TANO 塔諾廚房", visitText: "台中市南屯區大墩路918號。查看位置、加入 LINE，或追蹤我們的 Instagram。",
+        playVideo: "播放影片", footerLine: "台中市南屯區大墩路918號", mobileMenu: "菜單", mobileReserve: "LINE訂位", mobileTop: "返回上方"
+      },
+      en: {
+        navStory: "Story", navMenu: "Menu", navGallery: "Gallery", navVisit: "Visit",
+        heroEyebrow: "ARGENTINE · ITALIAN CUCINA", heroTitle: "An Italian-Argentine chef cooking over fire in Taichung.",
+        heroLead: "Fire gives the meat a direct, lingering aroma. A glass of Argentine Malbec brings a little of home to the table.",
+        viewMenu: "View menu", reserve: "Book via LINE",
+        storyTitle: "From Arta Terme and Sydney to Dadun Road, Taichung.",
+        storyP1: "TANO Kitchen is led by an Italian-Argentine chef with more than ten years of restaurant experience. He worked as a chef at a three-star hotel in Arta Terme, Italy, and at a Sydney steakhouse recognized among Asia’s top 50.",
+        storyP2: "Today, he brings European precision and Argentina’s passion for fire and meat to Taichung, serving dry-aged steak and live-fire cooking in the way he wants this city to taste them.",
+        menuTitle: "Menu", menuIntro: "Built around dry-aged steak and live-fire cooking. Tap any menu image to enlarge it.",
+        menuPage: "Menu page {n}",
+        galleryTitle: "Fire and table", galleryIntro: "From meat over charcoal to the last step before service—this is the kitchen at TANO, as it is every day.",
+        visitTitle: "TANO Kitchen", visitText: "No. 918, Dadun Road, Nantun District, Taichung. Find us, add us on LINE, or follow us on Instagram.",
+        playVideo: "Play video", footerLine: "台中市南屯區大墩路918號", mobileMenu: "Menu", mobileReserve: "Book via LINE", mobileTop: "Back to top"
+      },
+      es: {
+        navStory: "Historia", navMenu: "Menú", navGallery: "Galería", navVisit: "Visítanos",
+        heroEyebrow: "ARGENTINE · ITALIAN CUCINA", heroTitle: "Un chef ítalo-argentino cocinando al fuego en Taichung.",
+        heroLead: "El fuego deja en la carne un aroma franco y persistente. Una copa de Malbec argentino lleva a la mesa un poco del sabor de casa.",
+        viewMenu: "Ver menú", reserve: "Reservar por LINE",
+        storyTitle: "De Arta Terme y Sídney a la calle Dadun de Taichung.",
+        storyP1: "TANO Kitchen está dirigido por un chef ítalo-argentino con más de diez años de experiencia en restaurantes. Trabajó como chef en un hotel de tres estrellas en Arta Terme, Italia, y en un restaurante de carnes de Sídney reconocido entre los 50 mejores de Asia.",
+        storyP2: "Hoy trae a Taichung la precisión de la cocina europea y la pasión argentina por el fuego y la carne, con cortes madurados y cocina a las brasas hechos a su manera.",
+        menuTitle: "Menú", menuIntro: "Una propuesta centrada en carnes maduradas y cocina al fuego. Toca cualquier imagen del menú para ampliarla.",
+        menuPage: "Página {n} del menú",
+        galleryTitle: "Fuego y mesa", galleryIntro: "Desde la carne sobre las brasas hasta el último gesto antes de servir: así es cada día en la cocina de TANO.",
+        visitTitle: "TANO Kitchen", visitText: "N.º 918, calle Dadun, distrito de Nantun, Taichung. Encuéntranos, agréganos en LINE o síguenos en Instagram.",
+        playVideo: "Reproducir vídeo", footerLine: "台中市南屯區大墩路918號", mobileMenu: "Menú", mobileReserve: "Reservar por LINE", mobileTop: "Volver arriba"
+      }
+    };
+
+    const root = document.documentElement;
+    const langButtons = document.querySelectorAll("[data-lang]");
+    let currentLanguage = "zh";
+    let revealObserver = null;
+    function renderMenu() {
+      const grid = document.getElementById("menuGrid");
+      grid.querySelectorAll(".menu-page").forEach((button, index) => {
+        const number = index + 1;
+        const label = copy[currentLanguage].menuPage.replace("{n}", number);
+        button.setAttribute("aria-label", label);
+        const image = button.querySelector("img");
+        image.alt = label;
+      });
+    }
+    function setLanguage(lang) {
+      const selected = copy[lang] ? lang : "zh";
+      currentLanguage = selected;
+      root.lang = selected === "zh" ? "zh-Hant" : selected;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const value = copy[selected][el.dataset.i18n];
+        if (value) el.textContent = value;
+      });
+      langButtons.forEach(btn => {
+        const active = btn.dataset.lang === selected;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", String(active));
+      });
+      renderMenu();
+      try { localStorage.setItem("tano-language", selected); } catch (_) {}
+    }
+    langButtons.forEach(btn => btn.addEventListener("click", () => setLanguage(btn.dataset.lang)));
+
+    let preferred = null;
+    try { preferred = localStorage.getItem("tano-language"); } catch (_) {}
+    const browserLang = navigator.language.toLowerCase();
+    setLanguage(preferred || (browserLang.startsWith("es") ? "es" : browserLang.startsWith("en") ? "en" : "zh"));
+
+    function registerReveals(elements) {
+      elements.forEach((element, index) => {
+        element.style.setProperty("--reveal-delay", `${(index % 4) * 85}ms`);
+        revealObserver.observe(element);
+      });
+    }
+    if (!(matchMedia("(prefers-reduced-motion: reduce)").matches) && "IntersectionObserver" in window) {
+      root.classList.add("motion-ready");
+      revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: .12, rootMargin: "0px 0px -8%" });
+      registerReveals(document.querySelectorAll("[data-reveal]"));
+    }
+
+    const storyVideo = document.getElementById("storyVideo");
+    const videoPlay = document.getElementById("videoPlay");
+    function attemptVideoPlay() {
+      const attempt = storyVideo.play();
+      if (attempt) attempt.then(() => { videoPlay.hidden = true; }).catch(() => { videoPlay.hidden = false; });
+      setTimeout(() => { if (storyVideo.paused) videoPlay.hidden = false; }, 1200);
+    }
+    storyVideo.muted = true;
+    storyVideo.defaultMuted = true;
+    storyVideo.playsInline = true;
+    videoPlay.addEventListener("click", attemptVideoPlay);
+    storyVideo.addEventListener("loadeddata", attemptVideoPlay, { once: true });
+    attemptVideoPlay();
+    if ("IntersectionObserver" in window) {
+      const videoObserver = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) attemptVideoPlay();
+      }, { threshold: .25 });
+      videoObserver.observe(storyVideo);
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+    addEventListener("scroll", () => document.getElementById("header").classList.toggle("scrolled", scrollY > 20), { passive: true });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = lightbox.querySelector("img");
+    document.addEventListener("click", event => {
+      const item = event.target.closest("[data-full]");
+      if (!item) return;
+      lightbox.classList.toggle("menu-mode", item.dataset.menu === "true");
+      lightboxImage.src = item.dataset.full;
+      lightboxImage.alt = item.querySelector("img").alt;
+      lightbox.showModal();
+    });
+    lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
+    lightbox.addEventListener("click", event => { if (event.target === lightbox) lightbox.close(); });
+  </script>
+</body>
+</html>
