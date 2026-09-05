@@ -57,7 +57,7 @@
     .button.primary { color: var(--wine); }
     .button:hover, .button:focus-visible { color: var(--wine); }
     .hero-media { position: relative; height: min(58vh, 560px); align-self: center; overflow: hidden; }
-    .hero-media img { height: 100%; object-fit: cover; object-position: 50% 35%; filter: saturate(.82) contrast(1.04); }
+    .hero-media img { height: 100%; object-fit: cover; object-position: 50% 52%; filter: saturate(.82) contrast(1.04); }
     .hero-media::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(201,165,106,.35); box-shadow: inset 18px 0 36px rgba(0,0,0,.26); pointer-events: none; }
     section { scroll-margin-top: 72px; }
     .story { background: var(--paper); color: var(--ink); padding: 120px 0; }
@@ -87,7 +87,6 @@
     .gallery-item { position: relative; overflow: hidden; border: 1px solid rgba(201,165,106,.18); padding: 0; background: #061419; cursor: zoom-in; }
     .gallery-item img { height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s; }
     .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.035); filter: brightness(1.08); }
-    .gallery-menu-link { margin-top: 34px; }
     .visit { display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; overflow: hidden; background: var(--paper); color: var(--ink); border-top: 1px solid var(--line); text-align: left; }
     .visit > img { position: static; height: 360px; min-height: 360px; object-fit: cover; object-position: center 52%; filter: saturate(.78); }
     .visit-content { align-self: center; width: min(560px, calc(100% - 80px)); margin-inline: auto; }
@@ -117,6 +116,7 @@
       .hero-copy { padding: 64px 20px 52px; }
       h1 { font-size: clamp(2.65rem, 12vw, 4.4rem); max-width: 98%; }
       .hero-media { height: min(82vw, 390px); margin: 0 20px 54px; }
+      .hero-media img { object-position: 50% 35%; }
       .hero-media::after { box-shadow: inset 0 16px 28px rgba(0,0,0,.24); }
       .story, .menu, .gallery { padding: 78px 0; }
       .story-grid { grid-template-columns: 1fr; gap: 38px; }
@@ -133,7 +133,6 @@
       .gallery-feature { display: block; width: 100%; height: min(70vw, 360px); margin-bottom: 12px; }
       .gallery-strip { display: flex; overflow-x: auto; gap: 12px; margin-right: -16px; padding-right: 16px; padding-bottom: 12px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
       .gallery-strip .gallery-item { display: block; flex: 0 0 min(72vw, 340px); height: min(54vw, 280px); scroll-snap-align: start; }
-      .gallery-menu-link { margin-top: 22px; }
       .visit { grid-template-columns: 1fr; min-height: auto; }
       .visit > img { min-height: 0; height: 72vw; max-height: 520px; object-position: center 58%; }
       .visit-content { width: calc(100% - 40px); padding: 66px 0 74px; }
@@ -234,7 +233,6 @@
             <button class="gallery-item" type="button" data-full="assets/fire.webp" data-reveal="right"><img src="assets/fire.webp" alt="Steak over an open flame" loading="lazy"></button>
           </div>
         </div>
-        <a class="button primary gallery-menu-link" href="#menu" data-i18n="galleryMenuLink" data-reveal>查看完整菜單</a>
       </div>
     </section>
 
@@ -305,7 +303,7 @@
         storyP2: "如今，他將歐洲料理的細緻、阿根廷對炭火與肉品的熱情帶到台中，以熟成牛排與炭火料理，做成他在這座城市最想端出的味道。",
         menuTitle: "菜單", menuIntro: "以熟成牛排與炭火料理為核心。點擊菜單圖片，即可放大閱讀。",
         menuPage: "菜單第 {n} 頁",
-        galleryTitle: "炭火與餐桌", galleryIntro: "從炭火上的肉，到端上桌前的最後一道工序。這些是 TANO 每天真正發生的料理現場。", galleryMenuLink: "查看完整菜單",
+        galleryTitle: "炭火與餐桌", galleryIntro: "從炭火上的肉，到端上桌前的最後一道工序。這些是 TANO 每天真正發生的料理現場。",
         visitTitle: "TANO 塔諾廚房", visitText: "台中市南屯區大墩路918號。查看位置、加入 LINE，或追蹤我們的 Instagram。",
         playVideo: "播放影片", footerLine: "台中市南屯區大墩路918號", mobileMenu: "菜單", mobileReserve: "LINE訂位", mobileTop: "返回上方"
       },
@@ -319,7 +317,7 @@
         storyP2: "Today, he brings European precision and Argentina’s passion for fire and meat to Taichung, serving dry-aged steak and live-fire cooking in the way he wants this city to taste them.",
         menuTitle: "Menu", menuIntro: "Built around dry-aged steak and live-fire cooking. Tap any menu image to enlarge it.",
         menuPage: "Menu page {n}",
-        galleryTitle: "Fire and table", galleryIntro: "From meat over charcoal to the last step before service—this is the kitchen at TANO, as it is every day.", galleryMenuLink: "View full menu",
+        galleryTitle: "Fire and table", galleryIntro: "From meat over charcoal to the last step before service—this is the kitchen at TANO, as it is every day.",
         visitTitle: "TANO Kitchen", visitText: "No. 918, Dadun Road, Nantun District, Taichung. Find us, add us on LINE, or follow us on Instagram.",
         playVideo: "Play video", footerLine: "台中市南屯區大墩路918號", mobileMenu: "Menu", mobileReserve: "Book via LINE", mobileTop: "Back to top"
       },
@@ -333,7 +331,7 @@
         storyP2: "Hoy trae a Taichung la precisión de la cocina europea y la pasión argentina por el fuego y la carne, con cortes madurados y cocina a las brasas hechos a su manera.",
         menuTitle: "Menú", menuIntro: "Una propuesta centrada en carnes maduradas y cocina al fuego. Toca cualquier imagen del menú para ampliarla.",
         menuPage: "Página {n} del menú",
-        galleryTitle: "Fuego y mesa", galleryIntro: "Desde la carne sobre las brasas hasta el último gesto antes de servir: así es cada día en la cocina de TANO.", galleryMenuLink: "Ver el menú completo",
+        galleryTitle: "Fuego y mesa", galleryIntro: "Desde la carne sobre las brasas hasta el último gesto antes de servir: así es cada día en la cocina de TANO.",
         visitTitle: "TANO Kitchen", visitText: "N.º 918, calle Dadun, distrito de Nantun, Taichung. Encuéntranos, agréganos en LINE o síguenos en Instagram.",
         playVideo: "Reproducir vídeo", footerLine: "台中市南屯區大墩路918號", mobileMenu: "Menú", mobileReserve: "Reservar por LINE", mobileTop: "Volver arriba"
       }
