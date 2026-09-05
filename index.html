@@ -81,11 +81,13 @@
     .gallery { padding: 110px 0; background: var(--ink-soft); }
     .gallery .section-head { color: var(--ink); }
     .gallery .section-head p { color: var(--dark-muted); }
-    .gallery-grid { display: grid; grid-template-columns: 1.12fr .88fr; grid-auto-rows: 290px; gap: 18px; }
+    .gallery-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; align-items: stretch; }
+    .gallery-feature { min-height: 598px; }
+    .gallery-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 290px); gap: 18px; }
     .gallery-item { position: relative; overflow: hidden; border: 1px solid rgba(201,165,106,.18); padding: 0; background: #061419; cursor: zoom-in; }
-    .gallery-item:first-child { grid-row: span 2; }
     .gallery-item img { height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s; }
     .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.035); filter: brightness(1.08); }
+    .gallery-menu-link { margin-top: 34px; }
     .visit { display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; overflow: hidden; background: var(--paper); color: var(--ink); border-top: 1px solid var(--line); text-align: left; }
     .visit > img { position: static; height: 360px; min-height: 360px; object-fit: cover; object-position: center 52%; filter: saturate(.78); }
     .visit-content { align-self: center; width: min(560px, calc(100% - 80px)); margin-inline: auto; }
@@ -127,9 +129,10 @@
       .menu-grid { display: flex; overflow-x: auto; gap: 12px; margin-right: -16px; padding-right: 16px; padding-bottom: 12px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
       .menu-page { flex: 0 0 min(82vw, 390px); scroll-snap-align: start; }
       .gallery-grid { display: block; }
-      .gallery-item { display: block; width: 100%; height: 66vw; max-height: 430px; margin-bottom: 16px; }
-      .gallery-item:nth-child(odd) { width: 88%; }
-      .gallery-item:nth-child(even) { width: 88%; margin-left: auto; }
+      .gallery-feature { display: block; width: 100%; min-height: 0; height: min(70vw, 360px); margin-bottom: 12px; }
+      .gallery-strip { display: flex; overflow-x: auto; gap: 12px; margin-right: -16px; padding-right: 16px; padding-bottom: 12px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
+      .gallery-strip .gallery-item { display: block; flex: 0 0 min(72vw, 340px); height: min(54vw, 280px); scroll-snap-align: start; }
+      .gallery-menu-link { margin-top: 22px; }
       .visit { grid-template-columns: 1fr; min-height: auto; }
       .visit > img { min-height: 0; height: 72vw; max-height: 520px; object-position: center 58%; }
       .visit-content { width: calc(100% - 40px); padding: 66px 0 74px; }
@@ -158,8 +161,8 @@
       <a class="brand" href="#top" aria-label="TANO home">TANO</a>
       <nav class="nav-center" aria-label="Primary navigation">
         <a href="#story" data-i18n="navStory">故事</a>
-        <a href="#menu" data-i18n="navMenu">菜單</a>
         <a href="#gallery" data-i18n="navGallery">影像</a>
+        <a href="#menu" data-i18n="navMenu">菜單</a>
         <a href="#visit" data-i18n="navVisit">來訪</a>
       </nav>
       <div class="language" role="group" aria-label="Language">
@@ -206,6 +209,27 @@
       </div>
     </section>
 
+    <section class="gallery" id="gallery">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <div>
+            <h2 data-i18n="galleryTitle">炭火與餐桌</h2>
+          </div>
+          <p data-i18n="galleryIntro">炭火的溫度、料理的節奏，以及端上桌前的每一個細節。</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item gallery-feature" type="button" data-full="assets/steak.webp" data-reveal="left"><img src="assets/steak.webp" alt="Sliced grilled steak" loading="lazy"></button>
+          <div class="gallery-strip">
+            <button class="gallery-item" type="button" data-full="assets/chicken.webp" data-reveal="right"><img src="assets/chicken.webp" alt="Fire-roasted chicken" loading="lazy"></button>
+            <button class="gallery-item" type="button" data-full="assets/pasta.webp" data-reveal="right"><img src="assets/pasta.webp" alt="Freshly plated dish" loading="lazy"></button>
+            <button class="gallery-item" type="button" data-full="assets/wine.webp" data-reveal="right"><img src="assets/wine.webp" alt="Wine selected for the table" loading="lazy"></button>
+            <button class="gallery-item" type="button" data-full="assets/fire.webp" data-reveal="right"><img src="assets/fire.webp" alt="Steak over an open flame" loading="lazy"></button>
+          </div>
+        </div>
+        <a class="button primary gallery-menu-link" href="#menu" data-i18n="galleryMenuLink" data-reveal>查看完整菜單</a>
+      </div>
+    </section>
+
     <section class="menu" id="menu">
       <div class="shell">
         <div class="section-head" data-reveal>
@@ -219,24 +243,6 @@
           <button class="menu-page" type="button" data-full="assets/menu-02.webp" data-menu="true" data-reveal="up" aria-label="菜單第 2 頁"><img src="assets/menu-02.webp" alt="菜單第 2 頁" loading="lazy" decoding="async"></button>
           <button class="menu-page" type="button" data-full="assets/menu-03.webp" data-menu="true" data-reveal="up" aria-label="菜單第 3 頁"><img src="assets/menu-03.webp" alt="菜單第 3 頁" loading="lazy" decoding="async"></button>
           <button class="menu-page" type="button" data-full="assets/menu-04.webp" data-menu="true" data-reveal="up" aria-label="菜單第 4 頁"><img src="assets/menu-04.webp" alt="菜單第 4 頁" loading="lazy" decoding="async"></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="gallery" id="gallery">
-      <div class="shell">
-        <div class="section-head" data-reveal>
-          <div>
-            <h2 data-i18n="galleryTitle">炭火與餐桌</h2>
-          </div>
-          <p data-i18n="galleryIntro">炭火的溫度、料理的節奏，以及端上桌前的每一個細節。</p>
-        </div>
-        <div class="gallery-grid">
-          <button class="gallery-item" type="button" data-full="assets/steak.webp" data-reveal="left"><img src="assets/steak.webp" alt="Sliced grilled steak" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="assets/chicken.webp" data-reveal="right"><img src="assets/chicken.webp" alt="Fire-roasted chicken" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="assets/pasta.webp" data-reveal="right"><img src="assets/pasta.webp" alt="Freshly plated dish" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="assets/wine.webp" data-reveal="left"><img src="assets/wine.webp" alt="Wine selected for the table" loading="lazy"></button>
-          <button class="gallery-item" type="button" data-full="assets/fire.webp" data-reveal="right"><img src="assets/fire.webp" alt="Steak over an open flame" loading="lazy"></button>
         </div>
       </div>
     </section>
@@ -291,7 +297,7 @@
         storyP2: "如今，他將歐洲料理的細緻、阿根廷對炭火與肉品的熱情帶到台中，以熟成牛排與炭火料理，做成他在這座城市最想端出的味道。",
         menuTitle: "菜單", menuIntro: "以熟成牛排與炭火料理為核心。點擊菜單圖片，即可放大閱讀。",
         menuPage: "菜單第 {n} 頁",
-        galleryTitle: "炭火與餐桌", galleryIntro: "從炭火上的肉，到端上桌前的最後一道工序。這些是 TANO 每天真正發生的料理現場。",
+        galleryTitle: "炭火與餐桌", galleryIntro: "從炭火上的肉，到端上桌前的最後一道工序。這些是 TANO 每天真正發生的料理現場。", galleryMenuLink: "查看完整菜單",
         visitTitle: "TANO 塔諾廚房", visitText: "台中市南屯區大墩路918號。查看位置、加入 LINE，或追蹤我們的 Instagram。",
         playVideo: "播放影片", footerLine: "台中市南屯區大墩路918號", mobileMenu: "菜單", mobileReserve: "LINE訂位", mobileTop: "返回上方"
       },
@@ -305,7 +311,7 @@
         storyP2: "Today, he brings European precision and Argentina’s passion for fire and meat to Taichung, serving dry-aged steak and live-fire cooking in the way he wants this city to taste them.",
         menuTitle: "Menu", menuIntro: "Built around dry-aged steak and live-fire cooking. Tap any menu image to enlarge it.",
         menuPage: "Menu page {n}",
-        galleryTitle: "Fire and table", galleryIntro: "From meat over charcoal to the last step before service—this is the kitchen at TANO, as it is every day.",
+        galleryTitle: "Fire and table", galleryIntro: "From meat over charcoal to the last step before service—this is the kitchen at TANO, as it is every day.", galleryMenuLink: "View full menu",
         visitTitle: "TANO Kitchen", visitText: "No. 918, Dadun Road, Nantun District, Taichung. Find us, add us on LINE, or follow us on Instagram.",
         playVideo: "Play video", footerLine: "台中市南屯區大墩路918號", mobileMenu: "Menu", mobileReserve: "Book via LINE", mobileTop: "Back to top"
       },
@@ -319,7 +325,7 @@
         storyP2: "Hoy trae a Taichung la precisión de la cocina europea y la pasión argentina por el fuego y la carne, con cortes madurados y cocina a las brasas hechos a su manera.",
         menuTitle: "Menú", menuIntro: "Una propuesta centrada en carnes maduradas y cocina al fuego. Toca cualquier imagen del menú para ampliarla.",
         menuPage: "Página {n} del menú",
-        galleryTitle: "Fuego y mesa", galleryIntro: "Desde la carne sobre las brasas hasta el último gesto antes de servir: así es cada día en la cocina de TANO.",
+        galleryTitle: "Fuego y mesa", galleryIntro: "Desde la carne sobre las brasas hasta el último gesto antes de servir: así es cada día en la cocina de TANO.", galleryMenuLink: "Ver el menú completo",
         visitTitle: "TANO Kitchen", visitText: "N.º 918, calle Dadun, distrito de Nantun, Taichung. Encuéntranos, agréganos en LINE o síguenos en Instagram.",
         playVideo: "Reproducir vídeo", footerLine: "台中市南屯區大墩路918號", mobileMenu: "Menú", mobileReserve: "Reservar por LINE", mobileTop: "Volver arriba"
       }
