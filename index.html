@@ -81,9 +81,9 @@
     .gallery { padding: 110px 0; background: var(--ink-soft); }
     .gallery .section-head { color: var(--ink); }
     .gallery .section-head p { color: var(--dark-muted); }
-    .gallery-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; align-items: stretch; }
-    .gallery-feature { min-height: 598px; }
-    .gallery-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, 290px); gap: 18px; }
+    .gallery-grid { display: grid; grid-template-columns: 1.12fr .88fr; grid-auto-rows: 290px; gap: 18px; }
+    .gallery-grid .gallery-item:first-child { grid-row: span 2; }
+    .gallery-mobile { display: none; }
     .gallery-item { position: relative; overflow: hidden; border: 1px solid rgba(201,165,106,.18); padding: 0; background: #061419; cursor: zoom-in; }
     .gallery-item img { height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s; }
     .gallery-item:hover img, .gallery-item:focus-visible img { transform: scale(1.035); filter: brightness(1.08); }
@@ -128,8 +128,9 @@
       .section-head p { margin-top: 18px; }
       .menu-grid { display: flex; overflow-x: auto; gap: 12px; margin-right: -16px; padding-right: 16px; padding-bottom: 12px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
       .menu-page { flex: 0 0 min(82vw, 390px); scroll-snap-align: start; }
-      .gallery-grid { display: block; }
-      .gallery-feature { display: block; width: 100%; min-height: 0; height: min(70vw, 360px); margin-bottom: 12px; }
+      .gallery-grid { display: none; }
+      .gallery-mobile { display: block; }
+      .gallery-feature { display: block; width: 100%; height: min(70vw, 360px); margin-bottom: 12px; }
       .gallery-strip { display: flex; overflow-x: auto; gap: 12px; margin-right: -16px; padding-right: 16px; padding-bottom: 12px; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; }
       .gallery-strip .gallery-item { display: block; flex: 0 0 min(72vw, 340px); height: min(54vw, 280px); scroll-snap-align: start; }
       .gallery-menu-link { margin-top: 22px; }
@@ -218,6 +219,13 @@
           <p data-i18n="galleryIntro">炭火的溫度、料理的節奏，以及端上桌前的每一個細節。</p>
         </div>
         <div class="gallery-grid">
+          <button class="gallery-item" type="button" data-full="assets/steak.webp" data-reveal="left"><img src="assets/steak.webp" alt="Sliced grilled steak" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/chicken.webp" data-reveal="right"><img src="assets/chicken.webp" alt="Fire-roasted chicken" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/pasta.webp" data-reveal="right"><img src="assets/pasta.webp" alt="Freshly plated dish" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/wine.webp" data-reveal="left"><img src="assets/wine.webp" alt="Wine selected for the table" loading="lazy"></button>
+          <button class="gallery-item" type="button" data-full="assets/fire.webp" data-reveal="right"><img src="assets/fire.webp" alt="Steak over an open flame" loading="lazy"></button>
+        </div>
+        <div class="gallery-mobile">
           <button class="gallery-item gallery-feature" type="button" data-full="assets/steak.webp" data-reveal="left"><img src="assets/steak.webp" alt="Sliced grilled steak" loading="lazy"></button>
           <div class="gallery-strip">
             <button class="gallery-item" type="button" data-full="assets/chicken.webp" data-reveal="right"><img src="assets/chicken.webp" alt="Fire-roasted chicken" loading="lazy"></button>
