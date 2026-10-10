@@ -98,6 +98,7 @@
     footer { padding: 30px 0 100px; border-top: 1px solid var(--line); background: var(--paper); color: var(--paper-muted); font-size: .78rem; }
     .footer-row { display: flex; justify-content: space-between; gap: 20px; }
     .mobile-bar { display: none; }
+    .menu-hidden #menu, .menu-hidden .menu-link { display: none !important; }
     .lightbox { border: 0; padding: 0; width: min(92vw, 980px); max-height: 92vh; background: transparent; color: white; }
     .lightbox::backdrop { background: rgba(0,0,0,.9); }
     .lightbox img { max-height: 85vh; object-fit: contain; }
@@ -138,6 +139,7 @@
       .visit-content { width: calc(100% - 40px); padding: 66px 0 74px; }
       .footer-row { display: block; }
       .mobile-bar { position: fixed; display: grid; grid-template-columns: repeat(3, 1fr); z-index: 90; left: 10px; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); border: 1px solid var(--line); background: rgba(9,27,32,.97); box-shadow: 0 8px 28px rgba(0,0,0,.34); backdrop-filter: blur(12px); }
+      .menu-hidden .mobile-bar { grid-template-columns: repeat(2, 1fr); }
       .mobile-bar a { min-height: 52px; display: grid; place-items: center; text-decoration: none; font-size: .76rem; letter-spacing: .06em; border-right: 1px solid var(--line); }
       .mobile-bar a:last-child { border: 0; }
       .mobile-bar a[aria-disabled="true"] { opacity: .5; }
@@ -154,7 +156,7 @@
     }
   </style>
 </head>
-<body>
+<body class="menu-hidden">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="header">
     <div class="nav shell">
@@ -162,7 +164,7 @@
       <nav class="nav-center" aria-label="Primary navigation">
         <a href="#story" data-i18n="navStory">故事</a>
         <a href="#gallery" data-i18n="navGallery">影像</a>
-        <a href="#menu" data-i18n="navMenu">菜單</a>
+        <a class="menu-link" href="#menu" data-i18n="navMenu">菜單</a>
         <a href="#visit" data-i18n="navVisit">來訪</a>
       </nav>
       <div class="language" role="group" aria-label="Language">
@@ -180,7 +182,7 @@
         <h1 data-i18n="heroTitle" data-reveal>炭火慢慢逼出肉香，也定下 TANO 的味道。</h1>
         <p class="hero-lead" data-i18n="heroLead" data-reveal>炭火讓肉品留下直接而深刻的香氣，一杯阿根廷 Malbec，讓餐桌多了幾分故鄉的性格。</p>
         <div class="hero-actions" data-reveal>
-          <a class="button primary" href="#menu" data-i18n="viewMenu">查看菜單</a>
+          <a class="button primary menu-link" href="#menu" data-i18n="viewMenu">查看菜單</a>
           <a class="button line-link" href="https://lin.ee/tFZ01vNI" target="_blank" rel="noopener noreferrer" data-i18n="reserve">LINE訂位</a>
         </div>
       </div>
@@ -281,7 +283,7 @@
   </footer>
 
   <nav class="mobile-bar" aria-label="Quick actions">
-    <a href="#menu" data-i18n="mobileMenu">菜單</a>
+    <a class="menu-link" href="#menu" data-i18n="mobileMenu">菜單</a>
     <a class="line-link" href="https://lin.ee/tFZ01vNI" target="_blank" rel="noopener noreferrer" data-i18n="mobileReserve">LINE訂位</a>
     <a href="#top" data-i18n="mobileTop">返回上方</a>
   </nav>
